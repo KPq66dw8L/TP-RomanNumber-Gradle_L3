@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.uca.Tests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-03T08:19:23" hostname="noname" time="0.13">
+  <properties/>
+  <testcase name="testConvertersError()" classname="com.uca.Tests" time="0.038"/>
+  <testcase name="testConverter()" classname="com.uca.Tests" time="0.084"/>
+  <testcase name="testBasics()" classname="com.uca.Tests" time="0.002"/>
+  <testcase name="testConverter2()" classname="com.uca.Tests" time="0.002"/>
+  <system-out><![CDATA[java.lang.IllegalArgumentException: Nombre hors de l'intervalle autorise.
+java.lang.IllegalArgumentException: Nombre hors de l'intervalle autorise.
+java.lang.IllegalArgumentException: Les repetitions de paires ne sont pas autorisees ou valeurs avec des antécédents incorrects
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

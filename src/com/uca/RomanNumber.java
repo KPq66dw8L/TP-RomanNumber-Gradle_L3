@@ -1,6 +1,6 @@
 package com.uca;
 
-public class RomanNumber extends Number{
+public class RomanNumber extends Number implements Comparable{
 	
 	private String roman;
 	
@@ -42,16 +42,14 @@ public class RomanNumber extends Number{
 		this.roman = RomanConverter.getRomanFromNumber(this.value);
 	}
 	
-	
-	
-	
 	/**
 	* @{inheritDoc}
 	*/
 	@Override
 	public double doubleValue() {
 		// TODO
-		return 0;
+		Double d = new Double(this.value);
+		return d;
 	}
 
 	/**
@@ -60,7 +58,8 @@ public class RomanNumber extends Number{
 	@Override
 	public float floatValue() {
 		// TODO
-		return 0;
+		float f = this.value;
+		return f;
 	}
 
 	/**
@@ -69,7 +68,7 @@ public class RomanNumber extends Number{
 	@Override
 	public int intValue() {
 		// TODO
-		return 0;
+		return this.value;
 	}
 
 	/**
@@ -78,12 +77,83 @@ public class RomanNumber extends Number{
 	@Override
 	public long longValue() {
 		// TODO
-		return 0;
+		long l = this.value;
+		return l;
 	}
 
 	@Override
 	public String toString() {
 		//TODO
-		return "";
+		return this.roman;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		String type = o.getClass().getSimpleName();
+
+		switch(type) {
+			case "Integer":
+				if (this.intValue() > (int) o) {
+					return 1;
+				}
+				else {
+					if (this.intValue() == (int) o) {
+						return 0;
+					}
+					else {
+						return -1;
+					}
+				}
+			case "Long":
+				if (this.longValue() > (long) o) {
+					return 1;
+				}
+				else {
+					if (this.longValue() == (long) o) {
+						return 0;
+					}
+					else {
+						return -1;
+					}
+				}
+			case "Double":
+				if (this.doubleValue() > (double) o) {
+					return 1;
+				}
+				else {
+					if (this.doubleValue() == (double) o) {
+						return 0;
+					}
+					else {
+						return -1;
+					}
+				}
+			case "Float":
+				if (this.floatValue() > (float) o) {
+					return 1;
+				}
+				else {
+					if (this.floatValue() == (float) o) {
+						return 0;
+					}
+					else {
+						return -1;
+					}
+				}
+			case "String":
+			case "RomanNumber":
+				if (this.intValue() > RomanConverter.getNumberFromRoman((String) o)) {
+					return 1;
+				}
+				else {
+					if (this.toString().equals((String) o)) {
+						return 0;
+					}
+					else {
+						return -1;
+					}
+				}
+		}
+		return 0;
 	}
 }

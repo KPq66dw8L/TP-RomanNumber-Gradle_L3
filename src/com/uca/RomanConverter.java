@@ -4,6 +4,7 @@ package com.uca;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class RomanConverter{
 	
@@ -29,13 +30,41 @@ public class RomanConverter{
 	private static final Pattern VALIDATION_RE = Pattern.compile("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
 
 
-	public static String getRomanFromNumber(int a) throws IllegalArgumentException{
-		//TODO
-		return "";
+	public static String getRomanFromNumber(int a) throws IllegalArgumentException{ 
+		if (!(a>=1 && a<=3999)){
+			throw new IllegalArgumentException("Nombre hors de l'intervalle autorise.");
+		}
+
+		String resultat = new String();
+
+		for (RomanNumber i : SYMBOLS)
+		{
+			while (a >= i.getValue())
+			{
+				resultat += i.getRoman();
+				a -= i.getValue();
+			}
+		}
+		return resultat;
 	}
 	
-	public static int getNumberFromRoman(String a) throws IllegalArgumentException{
-		//TODO
-		return 0;
+	public static int getNumberFromRoman(String a) throws IllegalArgumentException{ 
+		Matcher m = VALIDATION_RE.matcher(a);
+		if (!m.matches()){
+			throw new IllegalArgumentException("Les repetitions de paires ne sont pas autorisees ou valeurs avec des antécédents incorrects");
+		}
+
+		int resultat = 0;
+		int index = 0;
+		for (RomanNumber i : SYMBOLS)
+		{
+				while((index+i.getRoman().length() <= a.length()) && (a.substring(index, index+i.getRoman().length()).equals(i.getRoman())))
+				{
+					resultat += i.getValue();
+					index += i.getRoman().length();
+				}
+			
+		}
+		return resultat;
 	}
 }
